@@ -4,6 +4,7 @@ import com.backend.integrador.dao.IDao;
 import com.backend.integrador.entity.Odontologo;
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OdontologDaoEnMemoria implements IDao<Odontologo> {
@@ -11,8 +12,8 @@ public class OdontologDaoEnMemoria implements IDao<Odontologo> {
     private static final Logger LOGGER = Logger.getLogger(OdontologDaoEnMemoria.class);
     private List<Odontologo> odontologoslista;
 
-    public OdontologDaoEnMemoria(List<Odontologo> odontologoslista) {
-        this.odontologoslista = odontologoslista;
+    public OdontologDaoEnMemoria() {
+        odontologoslista = new ArrayList<>();
     }
 
     @Override
