@@ -71,6 +71,7 @@ public class OdontologoServiceTest {
         Odontologo Odont2 = new Odontologo(1036666,"Fredy","Ospina");
         Odontologo odontAgregado1 = odontologoService.registrarOdontologo(Odont2);
         List<Odontologo> odontologTest = odontologoService.listarTodosLosOdontologos();
+        //no hay assert
     }
 
     // Prueba de Dao memoria
@@ -93,6 +94,7 @@ public class OdontologoServiceTest {
         odontologoService1.registrarOdontologo(Odont2);
 
         List<Odontologo> odontologTest = odontologoService1.listarTodosLosOdontologos();
+        //no hay assert
     }
 
 
