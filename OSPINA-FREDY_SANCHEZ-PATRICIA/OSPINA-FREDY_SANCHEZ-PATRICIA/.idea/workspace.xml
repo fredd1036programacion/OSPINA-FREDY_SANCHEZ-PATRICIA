@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e450128a-ac10-4938-8649-5fc1b32c1c72" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/backend/integrador/test/OdontologoServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OSPINA-FREDY_SANCHEZ-PATRICIA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OSPINA-FREDY_SANCHEZ-PATRICIA.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/backend/integrador/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/backend/integrador/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/backend/integrador/dao/imp/OdontologDaoEnMemoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/backend/integrador/dao/imp/OdontologDaoEnMemoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/backend/integrador/dao/imp/OdontologoDaoH2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/backend/integrador/dao/imp/OdontologoDaoH2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logfile.log" beforeDir="false" afterPath="$PROJECT_DIR$/logfile.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OSPINA-FREDY_SANCHEZ-PATRICIA/classpath.index" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OSPINA-FREDY_SANCHEZ-PATRICIA/classpath.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OSPINA-FREDY_SANCHEZ-PATRICIA/com/backend/integrador/test/OdontologoServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OSPINA-FREDY_SANCHEZ-PATRICIA/com/backend/integrador/test/OdontologoServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/backend/integrador/test/OdontologoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/backend/integrador/test/OdontologoServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,8 +50,8 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
-    "last_opened_file_path": "C:/Users/USER/Documents/h2/bin/h2-2.2.220.jar",
-    "project.structure.last.edited": "Project",
+    "last_opened_file_path": "C:/Users/Usuario/Documents/Digital_House/Back-end/parcial/OSPINA-FREDY_SANCHEZ-PATRICIA/sprint/dentalClinic/dentalClinic",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2"
   }
@@ -68,22 +67,7 @@
       <recent name="com.backend.integrador.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.OdontologoServiceTest.ensayoBusquedaOdontologo">
-    <configuration name="OdontologoServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="OSPINA-FREDY_SANCHEZ-PATRICIA" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.backend.integrador.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.backend.integrador.test" />
-      <option name="MAIN_CLASS_NAME" value="com.backend.integrador.test.OdontologoServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.OdontologoServiceTest.debeMostrarListadoConInfoEnMemoria">
     <configuration name="OdontologoServiceTest.debeMostrarListadoConInfo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="OSPINA-FREDY_SANCHEZ-PATRICIA" />
       <extension name="coverage">
@@ -132,6 +116,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="OdontologoServiceTest.deberiaEncontrarOdontologoConId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OSPINA-FREDY_SANCHEZ-PATRICIA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.backend.integrador.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.backend.integrador.test" />
+      <option name="MAIN_CLASS_NAME" value="com.backend.integrador.test.OdontologoServiceTest" />
+      <option name="METHOD_NAME" value="deberiaEncontrarOdontologoConId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="OdontologoServiceTest.ensayoBusquedaOdontologo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="OSPINA-FREDY_SANCHEZ-PATRICIA" />
       <extension name="coverage">
@@ -150,10 +150,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.OdontologoServiceTest.ensayoBusquedaOdontologo" />
         <item itemvalue="JUnit.OdontologoServiceTest.debeMostrarListadoConInfoEnMemoria" />
-        <item itemvalue="JUnit.OdontologoServiceTest" />
+        <item itemvalue="JUnit.OdontologoServiceTest.ensayoBusquedaOdontologo" />
         <item itemvalue="JUnit.OdontologoServiceTest.debeMostrarListadoConInfo" />
+        <item itemvalue="JUnit.OdontologoServiceTest.deberiaEncontrarOdontologoConId" />
         <item itemvalue="JUnit.OdontologoServiceTest.deberiaAgregarUnOdontologo" />
       </list>
     </recent_temporary>

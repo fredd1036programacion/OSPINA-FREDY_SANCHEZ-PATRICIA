@@ -70,6 +70,8 @@ public class OdontologoServiceTest {
         Odontologo odontAgregado0 = odontologoService.registrarOdontologo(Odont1);
         Odontologo Odont2 = new Odontologo(1036666,"Fredy","Ospina");
         Odontologo odontAgregado1 = odontologoService.registrarOdontologo(Odont2);
+        Odontologo Odont3 = new Odontologo(456781,"Esneyder","Sanchez");
+        Odontologo odontAgregado2 = odontologoService.registrarOdontologo(Odont3);
         List<Odontologo> odontologTest = odontologoService.listarTodosLosOdontologos();
     }
 

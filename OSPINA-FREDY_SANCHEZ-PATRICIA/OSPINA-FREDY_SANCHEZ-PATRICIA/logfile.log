@@ -275,3 +275,37 @@ Id: 2 - numero Matricula: 1036666 - Nombre: Fredy - apellido: Ospina]
 Id: 1 - numero Matricula: 4555454 - Nombre: Esneyder - apellido: De Sanchez
 [2023-08-10 01:19:41] [ INFO ] [OdontologDaoEnMemoria:29] El Odontologo de ID 1se encuentra en la Base de Datos 
 Id: 1 - numero Matricula: 4555454 - Nombre: Esneyder - apellido: De Sanchez
+[2023-08-10 01:35:18] [ INFO ] [OdontologoDaoH2:39] Odontologo registrado: 
+Id: 1 - numero Matricula: 123456 - Nombre: Patricia - apellido: Sanchez
+[2023-08-10 01:35:25] [ INFO ] [OdontologoDaoH2:39] Odontologo registrado: 
+Id: 1 - numero Matricula: 1036666 - Nombre: Fredy - apellido: Ospina
+[2023-08-10 01:35:25] [ INFO ] [OdontologoDaoH2:83] se ha encontrado el odontologo con ID: 
+Id: 1 - numero Matricula: 1036666 - Nombre: Fredy - apellido: Ospina
+[2023-08-10 01:35:31] [ INFO ] [OdontologoDaoH2:39] Odontologo registrado: 
+Id: 1 - numero Matricula: 123456 - Nombre: Patricia - apellido: Sanchez
+[2023-08-10 01:35:31] [ INFO ] [OdontologoDaoH2:39] Odontologo registrado: 
+Id: 2 - numero Matricula: 1036666 - Nombre: Fredy - apellido: Ospina
+[2023-08-10 01:35:31] [ INFO ] [OdontologoDaoH2:115] Los odontologos se encuentran listados: [
+Id: 1 - numero Matricula: 123456 - Nombre: Patricia - apellido: Sanchez, 
+Id: 2 - numero Matricula: 1036666 - Nombre: Fredy - apellido: Ospina]
+[2023-08-10 01:37:10] [ INFO ] [OdontologoDaoH2:39] Odontologo registrado: 
+Id: 1 - numero Matricula: 123456 - Nombre: Patricia - apellido: Sanchez
+[2023-08-10 01:37:10] [ INFO ] [OdontologoDaoH2:39] Odontologo registrado: 
+Id: 2 - numero Matricula: 1036666 - Nombre: Fredy - apellido: Ospina
+[2023-08-10 01:37:10] [ INFO ] [OdontologoDaoH2:39] Odontologo registrado: 
+Id: 3 - numero Matricula: 456781 - Nombre: Esneyder - apellido: Sanchez
+[2023-08-10 01:37:11] [ INFO ] [OdontologoDaoH2:115] Los odontologos se encuentran listados: [
+Id: 1 - numero Matricula: 123456 - Nombre: Patricia - apellido: Sanchez, 
+Id: 2 - numero Matricula: 1036666 - Nombre: Fredy - apellido: Ospina, 
+Id: 3 - numero Matricula: 456781 - Nombre: Esneyder - apellido: Sanchez]
+[2023-08-10 01:37:32] [ INFO ] [OdontologDaoEnMemoria:22] Odontologo guardado: 
+Id: 1 - numero Matricula: 4555454 - Nombre: Esneyder - apellido: De Sanchez
+[2023-08-10 01:37:32] [ INFO ] [OdontologDaoEnMemoria:29] El Odontologo de ID 1se encuentra en la Base de Datos 
+Id: 1 - numero Matricula: 4555454 - Nombre: Esneyder - apellido: De Sanchez
+[2023-08-10 01:37:43] [ INFO ] [OdontologDaoEnMemoria:22] Odontologo guardado: 
+Id: 1 - numero Matricula: 1123456 - Nombre: Patricia - apellido: Sanchez
+[2023-08-10 01:37:43] [ INFO ] [OdontologDaoEnMemoria:22] Odontologo guardado: 
+Id: 2 - numero Matricula: 1036666 - Nombre: Fredy - apellido: Ospina
+[2023-08-10 01:37:43] [ INFO ] [OdontologDaoEnMemoria:35] Lista de todos los odontologos : /n[
+Id: 1 - numero Matricula: 1123456 - Nombre: Patricia - apellido: Sanchez, 
+Id: 2 - numero Matricula: 1036666 - Nombre: Fredy - apellido: Ospina]
