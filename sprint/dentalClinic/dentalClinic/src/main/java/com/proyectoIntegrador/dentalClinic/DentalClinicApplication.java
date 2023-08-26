@@ -18,7 +18,7 @@ public class DentalClinicApplication {
 		LOGGER.info("DentalClinic is now running...");
 	}
 
-	@GetMapping("hola grupo")
+	@GetMapping("hola_grupo")
 	public String saludar() {
 		String saludo = "Hola grupo patricia y fredy";
 		LOGGER.info(saludo);
