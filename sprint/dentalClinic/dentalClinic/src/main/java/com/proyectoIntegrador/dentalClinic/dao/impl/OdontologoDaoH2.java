@@ -23,7 +23,7 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
             connection.setAutoCommit(false);
 
             PreparedStatement ps = connection.prepareStatement("INSERT INTO ODONTOLOGOS (MATRICULA, NOMBRE, APELLIDO) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, odontologo.getMatricula());
+            ps.setInt(1, odontologo.getMatricula());
             ps.setString(2, odontologo.getNombre());
             ps.setString(3, odontologo.getApellido());
             ps.execute();
@@ -162,13 +162,40 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
         int id = resultSet.getInt("id");
         String nombre = resultSet.getString("nombre");
         String apellido = resultSet.getString("apellido");
-        String matricula = resultSet.getString("matricula");
+        int matricula = resultSet.getInt("matricula");
 
         return new Odontologo(id, matricula, nombre, apellido);
     }
 
     @Override
-    public Odontologo modificar(Odontologo odontologo) {
-        return null;
+    public Odontologo modificar(Odontologo odontologoModificado) {
+        Connection connection = null;
+        try {
+            connection = H2Connection.getConnection();
+
+            PreparedStatement ps = connection.prepareStatement("UPDATE ODONTOLOGOS NOMBRE = ?, DNI = ?, APELLIDO = ?, SET MATRICULA = ? WHERE ID = ?");
+            ps.setString(1, odontologoModificado.getNombre());
+            ps.setString(2, odontologoModificado.getApellido());
+            ps.setInt(3, odontologoModificado.getMatricula());
+            ps.setInt(4, odontologoModificado.getId());
+            ps.execute();
+
+            LOGGER.warn("El Odontologo con id " + odontologoModificado.getId() + "ha sido modificado: " + odontologoModificado);
+
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            LOGGER.error(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception ex) {
+                LOGGER.error("Ha ocurrido un error al intentar cerrar la bdd. " + ex.getMessage());
+                ex.printStackTrace();
+            }
+        }
+        return odontologoModificado;
     }
 }

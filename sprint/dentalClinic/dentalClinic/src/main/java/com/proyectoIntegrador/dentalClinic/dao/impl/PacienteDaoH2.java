@@ -39,7 +39,7 @@ public class PacienteDaoH2 implements IDao<Paciente> {
 
             ResultSet rs = ps.getGeneratedKeys();
             while (rs.next()){
-                paciente.setId(rs.getInt(1));
+                paciente1.setId(rs.getInt(1));
             }
 
             connection.commit();

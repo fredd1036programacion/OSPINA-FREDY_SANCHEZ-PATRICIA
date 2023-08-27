@@ -2,18 +2,18 @@ package com.proyectoIntegrador.dentalClinic.entity;
 
 public class Odontologo {
     private int id;
-    private String matricula;
+    private int matricula;
     private String nombre;
     private String apellido;
 
-    public Odontologo(int id, String matricula, String nombre, String apellido) {
+    public Odontologo(int id, int matricula, String nombre, String apellido) {
         this.id = id;
         this.matricula = matricula;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public Odontologo(String matricula, String nombre, String apellido) {
+    public Odontologo(int matricula, String nombre, String apellido) {
         this.matricula = matricula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -27,11 +27,11 @@ public class Odontologo {
         this.id = id;
     }
 
-    public String getMatricula() {
+    public int getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
 
