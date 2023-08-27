@@ -3,8 +3,11 @@ package com.proyectoIntegrador.dentalClinic.service.impl;
 import com.proyectoIntegrador.dentalClinic.dao.IDao;
 import com.proyectoIntegrador.dentalClinic.entity.Odontologo;
 import com.proyectoIntegrador.dentalClinic.service.IOdontologoService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+@Service
 
 public class OdontologoService implements IOdontologoService {
     private IDao<Odontologo> odontologoIDao;
