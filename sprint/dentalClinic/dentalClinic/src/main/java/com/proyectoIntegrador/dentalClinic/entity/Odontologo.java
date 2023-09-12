@@ -1,7 +1,14 @@
 package com.proyectoIntegrador.dentalClinic.entity;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "ODONTOLOGOS")
 public class Odontologo {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int matricula;
     private String nombre;
     private String apellido;
@@ -9,12 +16,6 @@ public class Odontologo {
     public Odontologo() {
     }
 
-    public Odontologo(int id, int matricula, String nombre, String apellido) {
-        this.id = id;
-        this.matricula = matricula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-    }
 
     public Odontologo(int matricula, String nombre, String apellido) {
         this.matricula = matricula;
@@ -22,11 +23,11 @@ public class Odontologo {
         this.apellido = apellido;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

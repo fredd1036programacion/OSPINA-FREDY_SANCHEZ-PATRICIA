@@ -1,12 +1,13 @@
 package com.proyectoIntegrador.dentalClinic;
 
-import com.proyectoIntegrador.dentalClinic.dao.H2Connection;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -18,11 +19,17 @@ public class DentalClinicApplication {
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		SpringApplication.run(DentalClinicApplication.class, args);
-		// OJO HAY QUE TENER MUCHO CUIDADO, CUANDO SE ABRA LA CARPETA EN INTELL, para que funcione el create, debe ser abierte en la cerpta donde se encuentra ya al subcarpeta src, ejemplo de este trabajo, se debe entrar (open en intell) a la carpeta de dentalClinic hasta donde las capetas de src ya sea la proxima en abrirse
-		H2Connection.create();
-		LOGGER.info("ClinicaOdontologica is now running...");
 
+		LOGGER.info("ClinicaOdontologica is now running...");
 	}
+
+
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
+
+
 
 	@GetMapping("hola")
 	public String saludar(){

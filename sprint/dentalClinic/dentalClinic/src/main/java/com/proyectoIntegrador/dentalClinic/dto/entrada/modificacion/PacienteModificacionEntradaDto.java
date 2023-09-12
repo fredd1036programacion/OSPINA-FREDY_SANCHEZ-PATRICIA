@@ -1,8 +1,6 @@
-package com.proyectoIntegrador.dentalClinic.dto.entrada.paciente;
+package com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion;
 
 import com.proyectoIntegrador.dentalClinic.entity.Domicilio;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -10,7 +8,7 @@ import java.time.LocalDate;
 public class PacienteModificacionEntradaDto {
 
     @NotNull
-    private int id;
+    private Long id;
     @NotNull
     private String nombre;
     @NotNull
@@ -29,7 +27,7 @@ public class PacienteModificacionEntradaDto {
 
     }
 
-    public PacienteModificacionEntradaDto(int id, String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
+    public PacienteModificacionEntradaDto(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -38,11 +36,11 @@ public class PacienteModificacionEntradaDto {
         this.domicilio = domicilio;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

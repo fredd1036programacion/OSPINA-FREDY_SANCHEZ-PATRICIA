@@ -2,10 +2,21 @@ package com.proyectoIntegrador.dentalClinic.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "PACIENTES", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"dni"})
+})
 public class Paciente {
-    private int id;
+
+    @Id
+    //id auto incremental
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(length = 50)
+    private Long id;
+    @Column(length = 50)
     private String nombre;
     private String apellido;
     private int dni;
@@ -13,19 +24,14 @@ public class Paciente {
     //se usa si en el front el campo que nos llega en el JSon tiene un nombre diferente a mi atributo, asi con ese @ puedo indicarle a que campo quiero que direcciones el dato que viene del JSon
     //@JsonProperty("fechaingreso")
     private LocalDate fechaIngreso;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "domilicio_id")
     private Domicilio domicilio;
 
     public Paciente() {
     }
 
-    public Paciente(int id, String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.fechaIngreso = fechaIngreso;
-        this.domicilio = domicilio;
-    }
 
     public Paciente(String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
         this.nombre = nombre;
@@ -35,11 +41,11 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

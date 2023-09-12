@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class OdontologEntradaDto {
+public class OdontologoEntradaDto {
 
     @NotNull(message = "el dato de matricula no puede ser nulo")
     @NotBlank(message = "el campo no puede estar vacio")
@@ -22,10 +22,10 @@ public class OdontologEntradaDto {
     @NotBlank(message = "Debe especificarse el apellido del odontologo")
     private String apellido;
 
-    public OdontologEntradaDto() {
+    public OdontologoEntradaDto() {
     }
 
-    public OdontologEntradaDto(int matricula, String nombre, String apellido) {
+    public OdontologoEntradaDto(int matricula, String nombre, String apellido) {
         this.matricula = matricula;
         this.nombre = nombre;
         this.apellido = apellido;

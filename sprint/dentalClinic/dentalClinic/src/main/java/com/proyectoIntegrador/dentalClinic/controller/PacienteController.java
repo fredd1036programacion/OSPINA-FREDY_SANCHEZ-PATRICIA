@@ -1,11 +1,16 @@
-package com.proyectoIntegrador.dentalClinic.Controller;
+package com.proyectoIntegrador.dentalClinic.controller;
 
+
+import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.PacienteModificacionEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.paciente.PacienteEntradaDto;
-import com.proyectoIntegrador.dentalClinic.entity.Paciente;
+import com.proyectoIntegrador.dentalClinic.dto.salida.paciente.PacienteSalidaDto;
 import com.proyectoIntegrador.dentalClinic.service.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -26,14 +31,15 @@ public class PacienteController {
     //los endpoint que no necesitan "Registrar" o cualquier comentario, son los que listan ya que no es util para el usuario
     //@RequestBody es para que trabaje la informacion de java en Json
 
+    // EL RESPONSE ENTITY para los Post LO QUE BUSCA ES Q CUANDO EJECUTA BIEN EL METODO, ME ARROJE UN 201 EN PSOTMAN LO CUAL ES QUE TODO QUEDO CORRECTO y el @Valid es para que valide la informacion que llega como parametros antes de proceder.
     @PostMapping ("registrar")
-    public Paciente registrarPaciente(@RequestBody PacienteEntradaDto paciente){
-        return pacienteService.registrarPaciente(paciente);
+    public ResponseEntity<PacienteSalidaDto> registrarPaciente(@Valid @RequestBody PacienteEntradaDto paciente){
+        return new ResponseEntity<>(pacienteService.registrarPaciente(paciente), HttpStatus.CREATED);
     }
 
     @PutMapping("actualizar")
-    public Paciente actualizarPaciente (@RequestBody Paciente pacienteModificado){
-        return pacienteService.modificarPaciente(pacienteModificado);
+    public ResponseEntity<PacienteSalidaDto> actualizarPaciente (@Valid @RequestBody PacienteModificacionEntradaDto paciente){
+        return new ResponseEntity<> (pacienteService.modificarPaciente(paciente), HttpStatus.OK);
     }
 
 
@@ -41,17 +47,17 @@ public class PacienteController {
 
 
     @GetMapping (path = "consultaPaciente/{id}")
-        public Paciente consultarPaciente (int id){
+        public PacienteSalidaDto consultarPaciente (Long id){
         return pacienteService.buscarPacientePorId(id);
     }
 
     @DeleteMapping(path = "eliminarPaciente/{id}")
-        public void eliminarPaciente (int id){
+        public void  eliminarPaciente (@Valid Long id){
             pacienteService.eliminarPaciente(id);
     }
 
     @GetMapping ()
-    public List<Paciente> listarPaciente (){
+    public List<PacienteSalidaDto> listarPaciente (){
         return pacienteService.listarPacientes();
     }
 

@@ -1,11 +1,15 @@
-package com.proyectoIntegrador.dentalClinic.Controller;
+package com.proyectoIntegrador.dentalClinic.controller;
 
 
-import com.proyectoIntegrador.dentalClinic.entity.Odontologo;
-import com.proyectoIntegrador.dentalClinic.entity.Paciente;
+import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.OdontologoModificacionEntradaDto;
+import com.proyectoIntegrador.dentalClinic.dto.entrada.odontologo.OdontologoEntradaDto;
+import com.proyectoIntegrador.dentalClinic.dto.salida.odontologo.OdontologoSalidaDto;
 import com.proyectoIntegrador.dentalClinic.service.IOdontologoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,13 +29,13 @@ public class OdontologoController {
     //@RequestBody es para que trabaje la informacion de java en Json
 
     @PostMapping("Registrar")
-    public Odontologo registrarOdontologo(@RequestBody Odontologo odontologo){
-        return odontologoService.guardarOdontologo(odontologo);
+    public ResponseEntity<OdontologoSalidaDto> registrarOdontologo(@Valid @RequestBody OdontologoEntradaDto odontologo){
+        return new ResponseEntity<>(odontologoService.guardarOdontologo(odontologo), HttpStatus.CREATED);
     }
 
     @PutMapping("Actualizar")
-    public Odontologo actualizarOdontologo (@RequestBody Odontologo odontologoModificado){
-        return odontologoService.modificarOdontologo(odontologoModificado);
+    public ResponseEntity<OdontologoSalidaDto> actualizarOdontologo (@Valid @RequestBody OdontologoModificacionEntradaDto odontologoModificado){
+        return new ResponseEntity<>(odontologoService.modificarOdontologo(odontologoModificado),HttpStatus.OK);
     }
 
 
@@ -39,17 +43,17 @@ public class OdontologoController {
 
 
     @GetMapping (path = "/consultaOdontologo/{id}")
-    public Odontologo consultarOdontologo (int id){
+    public OdontologoSalidaDto consultarOdontologo (Long id){
         return odontologoService.buscarOdontologoPorId(id);
     }
 
     @DeleteMapping(path = "/eliminarOdontologo/{id}")
-    public void eliminarOdontologo (int id){
+    public void eliminarOdontologo (Long id){
         odontologoService.eliminarOdontologo(id);
     }
 
     @GetMapping (path = "/consultarTodo")
-    public List<Odontologo> listarOdontologo (){
+    public List<OdontologoSalidaDto> listarOdontologo (){
         return odontologoService.listarOdontologos();
     }
 

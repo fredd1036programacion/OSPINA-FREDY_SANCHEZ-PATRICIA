@@ -1,22 +1,22 @@
 package com.proyectoIntegrador.dentalClinic.service;
 
-import com.proyectoIntegrador.dentalClinic.dao.IDao;
-import com.proyectoIntegrador.dentalClinic.entity.Odontologo;
-import com.proyectoIntegrador.dentalClinic.entity.Paciente;
+import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.OdontologoModificacionEntradaDto;
+import com.proyectoIntegrador.dentalClinic.dto.entrada.odontologo.OdontologoEntradaDto;
+import com.proyectoIntegrador.dentalClinic.dto.salida.odontologo.OdontologoSalidaDto;
 
 import java.util.List;
 
 public interface IOdontologoService {
 
 
-     Odontologo guardarOdontologo(Odontologo odontologo);
+     OdontologoSalidaDto guardarOdontologo(OdontologoEntradaDto odontologo);
 
-     Odontologo buscarOdontologoPorId(int id);
+     OdontologoSalidaDto buscarOdontologoPorId(Long id);
 
-     List<Odontologo> listarOdontologos();
+     List<OdontologoSalidaDto> listarOdontologos();
 
-     void eliminarOdontologo(int id);
+     void eliminarOdontologo(Long id);
 
-     Odontologo modificarOdontologo (Odontologo modificarOdontologo);
+     OdontologoSalidaDto modificarOdontologo (OdontologoModificacionEntradaDto modificarOdontologo);
 
 }
