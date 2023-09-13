@@ -9,9 +9,9 @@ public class OdontologoEntradaDto {
 
     @NotNull(message = "el dato de matricula no puede ser nulo")
     @NotBlank(message = "el campo no puede estar vacio")
-    @Pattern(regexp = "^[A-Z]{2}-\\d{1,3}\\d*$")
+    @Pattern(regexp = "^[A-Z]{2}-\\d{1,3}\\d*$" , message = "debe ser alfanumerico y un guion despues de las 2 letras")
     @Size(min = 10, message = "El campo debe tener mínimo 10 caracteres")
-    private int matricula;
+    private String matricula;
 
     @NotNull(message = "el nombre de odontologo no puede estar nulo")
     @NotBlank(message = "Debe especificarse el nombre del odontologo")
@@ -25,17 +25,17 @@ public class OdontologoEntradaDto {
     public OdontologoEntradaDto() {
     }
 
-    public OdontologoEntradaDto(int matricula, String nombre, String apellido) {
+    public OdontologoEntradaDto(String matricula, String nombre, String apellido) {
         this.matricula = matricula;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

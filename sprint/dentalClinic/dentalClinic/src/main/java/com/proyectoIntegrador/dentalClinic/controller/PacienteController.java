@@ -4,6 +4,7 @@ package com.proyectoIntegrador.dentalClinic.controller;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.PacienteModificacionEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.paciente.PacienteEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.salida.paciente.PacienteSalidaDto;
+import com.proyectoIntegrador.dentalClinic.exceptions.ResourceNotFoundException;
 import com.proyectoIntegrador.dentalClinic.service.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,18 +48,19 @@ public class PacienteController {
 
 
     @GetMapping (path = "consultaPaciente/{id}")
-        public PacienteSalidaDto consultarPaciente (Long id){
-        return pacienteService.buscarPacientePorId(id);
+        public ResponseEntity<PacienteSalidaDto> consultarPaciente (Long id){
+        return new ResponseEntity<>(pacienteService.buscarPacientePorId(id), HttpStatus.FOUND);
     }
 
     @DeleteMapping(path = "eliminarPaciente/{id}")
-        public void  eliminarPaciente (@Valid Long id){
+        public void  eliminarPaciente (@Valid Long id) throws ResourceNotFoundException {
             pacienteService.eliminarPaciente(id);
+            ResponseEntity<String> responseEntity = ResponseEntity.ok("Paciente Eliminado");
     }
 
     @GetMapping ()
-    public List<PacienteSalidaDto> listarPaciente (){
-        return pacienteService.listarPacientes();
+    public ResponseEntity <List<PacienteSalidaDto>> listarPaciente (){
+        return new ResponseEntity<>(pacienteService.listarPacientes(), HttpStatus.FOUND);
     }
 
     @GetMapping("hola")

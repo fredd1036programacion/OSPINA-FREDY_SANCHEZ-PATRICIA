@@ -20,7 +20,7 @@ public class DentalClinicApplication {
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		SpringApplication.run(DentalClinicApplication.class, args);
 
-		LOGGER.info("ClinicaOdontologica is now running...");
+		LOGGER.info("Dental Clinic is now running...");
 	}
 
 

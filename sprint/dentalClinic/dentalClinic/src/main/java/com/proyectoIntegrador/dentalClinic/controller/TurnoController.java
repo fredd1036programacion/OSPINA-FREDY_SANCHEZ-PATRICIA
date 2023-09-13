@@ -1,10 +1,10 @@
 package com.proyectoIntegrador.dentalClinic.controller;
 
-import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.PacienteModificacionEntradaDto;
+
 import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.TurnoModificacionEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.turno.TurnoEntradaDto;
-import com.proyectoIntegrador.dentalClinic.dto.salida.paciente.PacienteSalidaDto;
 import com.proyectoIntegrador.dentalClinic.dto.salida.turno.TurnoSalidaDto;
+import com.proyectoIntegrador.dentalClinic.exceptions.ResourceNotFoundException;
 import com.proyectoIntegrador.dentalClinic.service.ITurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,23 +33,24 @@ private ITurnoService turnoService;
     }
 
     @PutMapping("/actualizar")
-    public ResponseEntity<TurnoSalidaDto> actualizarTurno (@Valid @RequestBody TurnoModificacionEntradaDto turno){
+    public ResponseEntity<TurnoSalidaDto> actualizarTurno  (@Valid @RequestBody TurnoModificacionEntradaDto turno) throws ResourceNotFoundException {
         return new ResponseEntity<> (turnoService.modificarTurno(turno), HttpStatus.OK);
     }
 
     @GetMapping (path = "consultaturno/{id}")
-    public TurnoSalidaDto consultarTurno (Long id){
-        return turnoService.buscarTurnoPorId(id);
+    public ResponseEntity <TurnoSalidaDto> consultarTurno (@PathVariable Long id){
+        return new ResponseEntity<>(turnoService.buscarTurnoPorId(id),HttpStatus.FOUND);
     }
 
     @DeleteMapping(path = "eliminarTurno/{id}")
-    public void  eliminarTurno (@Valid Long id){
+    public void  eliminarTurno (@PathVariable Long id) throws ResourceNotFoundException {
         turnoService.eliminarTurno(id);
+        ResponseEntity<String> responseEntity = ResponseEntity.ok("Turno Eliminado");
     }
 
     @GetMapping ()
-    public List<TurnoSalidaDto> listarTurno (){
-        return turnoService.listarTurno();
+    public ResponseEntity <List<TurnoSalidaDto>> listarTurno (){
+        return new ResponseEntity<>(turnoService.listarTurno(),HttpStatus.FOUND);
     }
 
     @GetMapping("holaTurno")
