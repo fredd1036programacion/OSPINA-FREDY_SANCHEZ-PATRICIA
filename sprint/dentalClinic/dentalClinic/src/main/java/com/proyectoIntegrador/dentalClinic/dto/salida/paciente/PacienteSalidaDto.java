@@ -1,10 +1,8 @@
 package com.proyectoIntegrador.dentalClinic.dto.salida.paciente;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.paciente.DomicilioEntradaDto;
 
-import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @JsonIgnoreProperties(ignoreUnknown = true)

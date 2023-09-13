@@ -24,5 +24,4 @@ public interface IPacienteService {
     PacienteSalidaDto modificarPaciente(PacienteModificacionEntradaDto pacienteModificado);
 
 
-
 }

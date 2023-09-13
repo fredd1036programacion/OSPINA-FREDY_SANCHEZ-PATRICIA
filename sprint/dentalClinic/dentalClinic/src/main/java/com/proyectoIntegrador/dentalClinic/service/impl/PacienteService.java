@@ -1,8 +1,8 @@
 package com.proyectoIntegrador.dentalClinic.service.impl;
 
 
-import com.proyectoIntegrador.dentalClinic.dto.entrada.paciente.PacienteEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.PacienteModificacionEntradaDto;
+import com.proyectoIntegrador.dentalClinic.dto.entrada.paciente.PacienteEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.salida.paciente.PacienteSalidaDto;
 import com.proyectoIntegrador.dentalClinic.entity.Paciente;
 import com.proyectoIntegrador.dentalClinic.exceptions.ResourceNotFoundException;
@@ -82,7 +82,7 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public PacienteSalidaDto modificarPaciente(PacienteModificacionEntradaDto  pacienteModificado) {
+    public PacienteSalidaDto modificarPaciente(PacienteModificacionEntradaDto pacienteModificado) {
         Paciente pacienteRecibido = dtoModificadoAEntidad(pacienteModificado);
         Paciente pacienteAActualizar = pacienteRepository.findById(pacienteModificado.getId()).orElse(null);
         PacienteSalidaDto pacienteSalidaDto = null;
@@ -118,16 +118,16 @@ public class PacienteService implements IPacienteService {
 
     }
 
-    public Paciente dtoEntradaAEntidad(PacienteEntradaDto pacienteEntradaDto){
+    public Paciente dtoEntradaAEntidad(PacienteEntradaDto pacienteEntradaDto) {
         return modelMapper.map(pacienteEntradaDto, Paciente.class);
     }
 
-    public PacienteSalidaDto entidadADtoSalida(Paciente paciente){
+    public PacienteSalidaDto entidadADtoSalida(Paciente paciente) {
 
         return modelMapper.map(paciente, PacienteSalidaDto.class);
     }
 
-    public Paciente dtoModificadoAEntidad (PacienteModificacionEntradaDto pacienteEntradaDto){
+    public Paciente dtoModificadoAEntidad(PacienteModificacionEntradaDto pacienteEntradaDto) {
         return modelMapper.map(pacienteEntradaDto, Paciente.class);
 
     }

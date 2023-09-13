@@ -3,6 +3,7 @@ package com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.constraints.NotNull;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DomicilioModificacionEntradaDto {
 

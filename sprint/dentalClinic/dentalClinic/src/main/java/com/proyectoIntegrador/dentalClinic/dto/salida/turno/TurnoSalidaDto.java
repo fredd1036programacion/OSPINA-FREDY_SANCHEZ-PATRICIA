@@ -1,7 +1,5 @@
 package com.proyectoIntegrador.dentalClinic.dto.salida.turno;
 
-import com.proyectoIntegrador.dentalClinic.dto.salida.odontologo.OdontologoSalidaDto;
-
 import java.time.LocalDateTime;
 
 public class TurnoSalidaDto {

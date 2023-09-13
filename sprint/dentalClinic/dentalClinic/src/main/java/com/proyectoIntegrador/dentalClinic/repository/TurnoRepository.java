@@ -1,7 +1,6 @@
 package com.proyectoIntegrador.dentalClinic.repository;
 
 
-
 import com.proyectoIntegrador.dentalClinic.entity.Turno;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
