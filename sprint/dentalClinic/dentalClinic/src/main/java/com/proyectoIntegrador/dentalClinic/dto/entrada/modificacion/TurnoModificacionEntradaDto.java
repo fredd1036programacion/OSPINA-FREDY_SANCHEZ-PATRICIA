@@ -1,32 +1,36 @@
 package com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.proyectoIntegrador.dentalClinic.entity.Odontologo;
-import com.proyectoIntegrador.dentalClinic.entity.Paciente;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TurnoModificacionEntradaDto {
 
     @NotNull
     private Long id;
     @NotNull
-    private Long odontologoId;
+    private Long idPaciente;
     @NotNull
-    private Long pacienteId;
+    private Long idOdontologo;
     //se va a usar LocakDateTime para que se pueda regitrar la fecha y la hora tambien
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    @FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")
     @NotNull
     private LocalDateTime fechaYHora;
 
     public TurnoModificacionEntradaDto() {
     }
 
-    public TurnoModificacionEntradaDto(Long id, Long odontologoId, Long pacienteId, LocalDateTime fechaYHora) {
+    public TurnoModificacionEntradaDto(Long id, Long idPaciente, Long idOdontologo, LocalDateTime fechaYHora) {
         this.id = id;
-        this.odontologoId = odontologoId;
-        this.pacienteId = pacienteId;
+        this.idPaciente = idPaciente;
+        this.idOdontologo = idOdontologo;
         this.fechaYHora = fechaYHora;
     }
 
@@ -38,20 +42,20 @@ public class TurnoModificacionEntradaDto {
         this.id = id;
     }
 
-    public Long getOdontologoId() {
-        return odontologoId;
+    public Long getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setOdontologoId(Long odontologoId) {
-        this.odontologoId = odontologoId;
+    public void setIdPaciente(Long idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
-    public Long getPacienteId() {
-        return pacienteId;
+    public Long getIdOdontologo() {
+        return idOdontologo;
     }
 
-    public void setPacienteId(Long pacienteId) {
-        this.pacienteId = pacienteId;
+    public void setIdOdontologo(Long idOdontologo) {
+        this.idOdontologo = idOdontologo;
     }
 
     public LocalDateTime getFechaYHora() {

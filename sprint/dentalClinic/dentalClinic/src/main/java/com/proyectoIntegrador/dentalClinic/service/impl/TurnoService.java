@@ -5,10 +5,13 @@ import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.TurnoModific
 import com.proyectoIntegrador.dentalClinic.dto.entrada.turno.TurnoEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.salida.odontologo.OdontologoSalidaDto;
 import com.proyectoIntegrador.dentalClinic.dto.salida.paciente.PacienteSalidaDto;
+import com.proyectoIntegrador.dentalClinic.dto.salida.turno.OdontologoTurnoSalidaDto;
+import com.proyectoIntegrador.dentalClinic.dto.salida.turno.PacienteTurnoSalidaDto;
 import com.proyectoIntegrador.dentalClinic.dto.salida.turno.TurnoSalidaDto;
 import com.proyectoIntegrador.dentalClinic.entity.Odontologo;
 import com.proyectoIntegrador.dentalClinic.entity.Paciente;
 import com.proyectoIntegrador.dentalClinic.entity.Turno;
+import com.proyectoIntegrador.dentalClinic.exceptions.ResourceNotFoundException;
 import com.proyectoIntegrador.dentalClinic.repository.TurnoRepository;
 import com.proyectoIntegrador.dentalClinic.service.ITurnoService;
 import org.modelmapper.ModelMapper;
@@ -27,7 +30,7 @@ public class TurnoService implements ITurnoService {
     private final TurnoRepository turnoRepository;
     private final ModelMapper modelMapper;
 
-    //necesitmos los odontologos y los pacientes
+    //necesitamos los odontologos y los pacientes
 
     private final OdontologoService odontologoService;
 
@@ -65,6 +68,7 @@ public class TurnoService implements ITurnoService {
             Turno turnoNuevo = turnoRepository.save(modelMapper.map(turnoEntradaDto, Turno.class));
             turnoSalidaDto = entidadADto(turnoNuevo);
             LOGGER.info("Nuevo turno registrado con exito: {}", turnoSalidaDto);
+
         }
 
         return turnoSalidaDto;
@@ -96,12 +100,13 @@ public class TurnoService implements ITurnoService {
         }
 
     @Override
-    public void eliminarTurno(Long id) {
+    public void eliminarTurno(Long id) throws ResourceNotFoundException {
         if (buscarTurnoPorId(id) != null) {
             turnoRepository.deleteById(id);
             LOGGER.warn("Se ha eliminado el turno con id: {}", id);
         } else {
             LOGGER.error("No se ha encontrado el turno con id {}", id);
+            throw new ResourceNotFoundException("No se ha encontrado el turno con id" + id);
 
         }
 
@@ -109,14 +114,14 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public TurnoSalidaDto modificarTurno(TurnoModificacionEntradaDto turnoModificado) {
+    public TurnoSalidaDto modificarTurno(TurnoModificacionEntradaDto turnoModificado) throws ResourceNotFoundException {
         Turno turnoAActualizar = turnoRepository.findById(turnoModificado.getId()).orElse(null);
         TurnoSalidaDto turnoSalidaDto = null;
 
         if (turnoAActualizar != null) {
 
-            turnoAActualizar.setPaciente(modelMapper.map(pacienteService.buscarPacientePorId(turnoModificado.getPacienteId()), Paciente.class));
-            turnoAActualizar.setOdontologo(modelMapper.map(odontologoService.buscarOdontologoPorId(turnoModificado.getOdontologoId()), Odontologo.class));
+            turnoAActualizar.setPaciente(modelMapper.map(pacienteService.buscarPacientePorId(turnoModificado.getIdPaciente()), Paciente.class));
+            turnoAActualizar.setOdontologo(modelMapper.map(odontologoService.buscarOdontologoPorId(turnoModificado.getIdOdontologo()), Odontologo.class));
             turnoAActualizar.setFechaYHora(turnoModificado.getFechaYHora());
             turnoRepository.save(turnoAActualizar);
 
@@ -126,7 +131,7 @@ public class TurnoService implements ITurnoService {
 
         } else {
             LOGGER.error("No fue posible actualizar los datos ya que el turno no se encuentra registrado");
-
+            throw new ResourceNotFoundException("No fue posible actualizar los datos ya que el turno no se encuentra registrado");
         }
 
 
@@ -134,23 +139,19 @@ public class TurnoService implements ITurnoService {
     }
 
 
-    private void configureMappings() {
-        modelMapper.typeMap(Turno.class, TurnoSalidaDto.class)
-                .addMappings(mapper -> mapper.map(Turno::getPaciente, TurnoSalidaDto::setPacienteTurnoSalidaDto))
-                .addMappings(mapper -> mapper.map(Turno::getOdontologo, TurnoSalidaDto::setOdontologoTurnoSalidaDto));
+
+    private PacienteTurnoSalidaDto pacienteSalidaDtoASalidaTurnoDto(Long id) {
+        return modelMapper.map(pacienteService.buscarPacientePorId(id), PacienteTurnoSalidaDto.class);
     }
 
-    public TurnoSalidaDto entidadADto(Turno turno) {
-        return modelMapper.map(turno, TurnoSalidaDto.class);
+    private OdontologoTurnoSalidaDto odontologoSalidaDtoASalidaTurnoDto(Long id) {
+        return modelMapper.map(odontologoService.buscarOdontologoPorId(id), OdontologoTurnoSalidaDto.class);
     }
 
-    public TurnoSalidaDto turnoADtoSalida(Turno turno){
-
-        return modelMapper.map(turno, TurnoSalidaDto.class);
-    }
-
-    public Turno dtoModificadoAturno (TurnoModificacionEntradaDto turnoEntradaDto){
-        return modelMapper.map(turnoEntradaDto, Turno.class);
-
+    private TurnoSalidaDto entidadADto(Turno turno) {
+        TurnoSalidaDto turnoSalidaDto = modelMapper.map(turno, TurnoSalidaDto.class);
+        turnoSalidaDto.setPacienteTurnoSalidaDto(pacienteSalidaDtoASalidaTurnoDto(turno.getPaciente().getId()));
+        turnoSalidaDto.setOdontologoTurnoSalidaDto(odontologoSalidaDtoASalidaTurnoDto(turno.getOdontologo().getId()));
+        return turnoSalidaDto;
     }
 }

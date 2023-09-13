@@ -5,6 +5,7 @@ import com.proyectoIntegrador.dentalClinic.dto.entrada.paciente.PacienteEntradaD
 import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.PacienteModificacionEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.salida.paciente.PacienteSalidaDto;
 import com.proyectoIntegrador.dentalClinic.entity.Paciente;
+import com.proyectoIntegrador.dentalClinic.exceptions.ResourceNotFoundException;
 import com.proyectoIntegrador.dentalClinic.repository.PacienteRepository;
 import com.proyectoIntegrador.dentalClinic.service.IPacienteService;
 import org.modelmapper.ModelMapper;
@@ -69,12 +70,13 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public void eliminarPaciente(Long id) {
+    public void eliminarPaciente(Long id) throws ResourceNotFoundException {
         if (buscarPacientePorId(id) != null) {
             pacienteRepository.deleteById(id);
             LOGGER.warn("Se ha eliminado el paciente con id: {}", id);
         } else {
             LOGGER.error("No se ha encontrado el paciente con id {}", id);
+            throw new ResourceNotFoundException("No se ha encontrado el paciente con id" + id);
         }
 
     }

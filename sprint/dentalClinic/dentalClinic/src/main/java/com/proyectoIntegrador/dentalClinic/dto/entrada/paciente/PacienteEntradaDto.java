@@ -17,8 +17,9 @@ public class PacienteEntradaDto {
     @NotBlank(message = "Debe especificarse el apellido del paciente")
     private String apellido;
 
-    @Pattern(regexp = "\\d+", message = "El campo dni sólo admite caracteres numéricos")
-    @NotBlank(message = "Debe especificarse el dni del paciente")
+
+    @NotNull(message = "Debe especificarse el dni del paciente")
+    @Digits(integer = 8, fraction = 0, message = "El número debe tener como máximo 8 dígitos")
     private int dni;
 
     //@JsonProperty("fechaingreso") - en caso que el campo a mapear este escrito distinto a nuestro modelo

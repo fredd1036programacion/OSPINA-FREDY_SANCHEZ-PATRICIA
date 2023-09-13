@@ -5,6 +5,7 @@ import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.OdontologoMo
 import com.proyectoIntegrador.dentalClinic.dto.entrada.odontologo.OdontologoEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.salida.odontologo.OdontologoSalidaDto;
 import com.proyectoIntegrador.dentalClinic.entity.Odontologo;
+import com.proyectoIntegrador.dentalClinic.exceptions.ResourceNotFoundException;
 import com.proyectoIntegrador.dentalClinic.repository.OdontologoRepository;
 import com.proyectoIntegrador.dentalClinic.service.IOdontologoService;
 import org.modelmapper.ModelMapper;
@@ -60,13 +61,13 @@ public class OdontologoService implements IOdontologoService {
         return odontologos;
     }
 
-    public void eliminarOdontologo(Long id) {
+    public void eliminarOdontologo(Long id) throws ResourceNotFoundException {
         if (buscarOdontologoPorId(id) != null) {
             odontologoRepository.deleteById(id);
             LOGGER.warn("Se ha eliminado el odontologo con id: {}", id);
         } else {
             LOGGER.error("No se ha encontrado el odontologo con id {}", id);
-
+            throw new ResourceNotFoundException("No se ha encontrado el odontologo con id " + id);
         }
     }
 

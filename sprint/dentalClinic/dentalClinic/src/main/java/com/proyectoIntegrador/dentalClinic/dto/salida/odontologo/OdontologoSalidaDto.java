@@ -3,14 +3,14 @@ package com.proyectoIntegrador.dentalClinic.dto.salida.odontologo;
 public class OdontologoSalidaDto {
 
     private Long id;
-    private int matricula;
+    private String matricula;
     private String nombre;
     private String apellido;
 
     public OdontologoSalidaDto() {
     }
 
-    public OdontologoSalidaDto(Long id, int matricula, String nombre, String apellido) {
+    public OdontologoSalidaDto(Long id, String matricula, String nombre, String apellido) {
         this.id = id;
         this.matricula = matricula;
         this.nombre = nombre;
@@ -25,11 +25,11 @@ public class OdontologoSalidaDto {
         this.id = id;
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

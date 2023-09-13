@@ -1,10 +1,10 @@
 package com.proyectoIntegrador.dentalClinic.service;
 
-import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.PacienteModificacionEntradaDto;
+
 import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.TurnoModificacionEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.turno.TurnoEntradaDto;
-import com.proyectoIntegrador.dentalClinic.dto.salida.paciente.PacienteSalidaDto;
 import com.proyectoIntegrador.dentalClinic.dto.salida.turno.TurnoSalidaDto;
+import com.proyectoIntegrador.dentalClinic.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ public interface ITurnoService {
 
     List<TurnoSalidaDto> listarTurno();
     TurnoSalidaDto buscarTurnoPorId(Long id);
-    void eliminarTurno(Long id);
+    void eliminarTurno(Long id) throws ResourceNotFoundException;
 
     //Terminar la modificacion solicitada por la profe
 
-    TurnoSalidaDto modificarTurno(TurnoModificacionEntradaDto turnoModificado);
+    TurnoSalidaDto modificarTurno(TurnoModificacionEntradaDto turnoModificado) throws ResourceNotFoundException;
 }

@@ -4,6 +4,7 @@ package com.proyectoIntegrador.dentalClinic.controller;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.OdontologoModificacionEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.odontologo.OdontologoEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.salida.odontologo.OdontologoSalidaDto;
+import com.proyectoIntegrador.dentalClinic.exceptions.ResourceNotFoundException;
 import com.proyectoIntegrador.dentalClinic.service.IOdontologoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +29,13 @@ public class OdontologoController {
     //los endpoint que no necesitan "Registrar" o cualquier comentario, son los que listan ya que no es util para el usuario
     //@RequestBody es para que trabaje la informacion de java en Json
 
-    @PostMapping("Registrar")
+    @PostMapping("registrar")
     public ResponseEntity<OdontologoSalidaDto> registrarOdontologo(@Valid @RequestBody OdontologoEntradaDto odontologo){
         return new ResponseEntity<>(odontologoService.guardarOdontologo(odontologo), HttpStatus.CREATED);
     }
 
     @PutMapping("Actualizar")
-    public ResponseEntity<OdontologoSalidaDto> actualizarOdontologo (@Valid @RequestBody OdontologoModificacionEntradaDto odontologoModificado){
+    public ResponseEntity<OdontologoSalidaDto> actualizarOdontologo (@Valid @RequestBody OdontologoModificacionEntradaDto odontologoModificado)  {
         return new ResponseEntity<>(odontologoService.modificarOdontologo(odontologoModificado),HttpStatus.OK);
     }
 
@@ -43,18 +44,25 @@ public class OdontologoController {
 
 
     @GetMapping (path = "/consultaOdontologo/{id}")
-    public OdontologoSalidaDto consultarOdontologo (Long id){
-        return odontologoService.buscarOdontologoPorId(id);
+    public ResponseEntity <OdontologoSalidaDto> consultarOdontologo (Long id){
+        return new ResponseEntity<>(odontologoService.buscarOdontologoPorId(id),HttpStatus.FOUND);
     }
 
     @DeleteMapping(path = "/eliminarOdontologo/{id}")
-    public void eliminarOdontologo (Long id){
+    public void eliminarOdontologo (Long id) throws ResourceNotFoundException {
         odontologoService.eliminarOdontologo(id);
+        ResponseEntity<String> responseEntity = ResponseEntity.ok("Odontologo Eliminado");
     }
 
     @GetMapping (path = "/consultarTodo")
-    public List<OdontologoSalidaDto> listarOdontologo (){
-        return odontologoService.listarOdontologos();
+    public ResponseEntity <List<OdontologoSalidaDto>> listarOdontologo (){
+        return new ResponseEntity<>(odontologoService.listarOdontologos(),HttpStatus.FOUND);
+    }
+
+    @GetMapping("holaOdontologo")
+    public String saludar(){
+        String saludo = "prueba q funciona la api de fredy Odontologo";
+        return saludo;
     }
 
 
