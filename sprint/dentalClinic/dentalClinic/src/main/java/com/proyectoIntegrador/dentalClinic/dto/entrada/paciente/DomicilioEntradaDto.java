@@ -69,4 +69,6 @@ public class DomicilioEntradaDto {
     public void setProvincia(String provincia) {
         this.provincia = provincia;
     }
+
+
 }

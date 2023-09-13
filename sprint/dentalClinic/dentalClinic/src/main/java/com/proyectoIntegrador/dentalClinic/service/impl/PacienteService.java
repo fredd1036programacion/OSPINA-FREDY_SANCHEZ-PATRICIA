@@ -118,6 +118,10 @@ public class PacienteService implements IPacienteService {
 
     }
 
+
+
+
+
     public Paciente dtoEntradaAEntidad(PacienteEntradaDto pacienteEntradaDto) {
         return modelMapper.map(pacienteEntradaDto, Paciente.class);
     }
