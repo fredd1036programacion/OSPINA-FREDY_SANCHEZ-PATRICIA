@@ -16,6 +16,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/pacientes")
 
 public class PacienteController {
@@ -33,38 +34,38 @@ public class PacienteController {
     //@RequestBody es para que trabaje la informacion de java en Json
 
     // EL RESPONSE ENTITY para los Post LO QUE BUSCA ES Q CUANDO EJECUTA BIEN EL METODO, ME ARROJE UN 201 EN PSOTMAN LO CUAL ES QUE TODO QUEDO CORRECTO y el @Valid es para que valide la informacion que llega como parametros antes de proceder.
-    @PostMapping ("registrar")
-    public ResponseEntity<PacienteSalidaDto> registrarPaciente(@Valid @RequestBody PacienteEntradaDto paciente){
+    @PostMapping("registrar")
+    public ResponseEntity<PacienteSalidaDto> registrarPaciente(@Valid @RequestBody PacienteEntradaDto paciente) {
         return new ResponseEntity<>(pacienteService.registrarPaciente(paciente), HttpStatus.CREATED);
     }
 
     @PutMapping("actualizar")
-    public ResponseEntity<PacienteSalidaDto> actualizarPaciente (@Valid @RequestBody PacienteModificacionEntradaDto paciente){
-        return new ResponseEntity<> (pacienteService.modificarPaciente(paciente), HttpStatus.OK);
+    public ResponseEntity<PacienteSalidaDto> actualizarPaciente(@Valid @RequestBody PacienteModificacionEntradaDto paciente) throws ResourceNotFoundException {
+        return new ResponseEntity<>(pacienteService.modificarPaciente(paciente), HttpStatus.OK);
     }
 
 
     //Ejercicio de la mesa clase de APIs. Clase 17
 
 
-    @GetMapping (path = "consultaPaciente/{id}")
-        public ResponseEntity<PacienteSalidaDto> consultarPaciente (Long id){
+    @GetMapping(path = "consultaPaciente/{id}")
+    public ResponseEntity<PacienteSalidaDto> consultarPaciente(@PathVariable Long id) {
         return new ResponseEntity<>(pacienteService.buscarPacientePorId(id), HttpStatus.FOUND);
     }
 
     @DeleteMapping(path = "eliminarPaciente/{id}")
-        public void  eliminarPaciente (@Valid Long id) throws ResourceNotFoundException {
-            pacienteService.eliminarPaciente(id);
-            ResponseEntity<String> responseEntity = ResponseEntity.ok("Paciente Eliminado");
+    public ResponseEntity<?> eliminarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
+        pacienteService.eliminarPaciente(id);
+        return new ResponseEntity<>("Paciente Eliminado con exito", HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping ()
-    public ResponseEntity <List<PacienteSalidaDto>> listarPaciente (){
+    @GetMapping()
+    public ResponseEntity<List<PacienteSalidaDto>> listarPaciente() {
         return new ResponseEntity<>(pacienteService.listarPacientes(), HttpStatus.FOUND);
     }
 
     @GetMapping("hola")
-    public String saludar(){
+    public String saludar() {
         String saludo = "prueba q funciona la api de fredy";
         return saludo;
     }

@@ -1,4 +1,3 @@
-
 // estas salidas de odontologoturno y pacienteturno son para que en la salida turno tengamos informacion de los odontologos y pacientes ya que en el de entrada solo estamos trabajando con el id
 
 

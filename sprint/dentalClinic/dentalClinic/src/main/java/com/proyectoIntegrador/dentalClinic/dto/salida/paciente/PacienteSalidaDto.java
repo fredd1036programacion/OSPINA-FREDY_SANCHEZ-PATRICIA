@@ -1,10 +1,8 @@
 package com.proyectoIntegrador.dentalClinic.dto.salida.paciente;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.paciente.DomicilioEntradaDto;
 
-import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -23,12 +21,12 @@ public class PacienteSalidaDto {
     private LocalDate fechaIngreso;
 
 
-    private DomicilioEntradaDto domicilio;
+    private DomicilioSalidaDto domicilio;
 
     public PacienteSalidaDto() {
     }
 
-    public PacienteSalidaDto(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioEntradaDto domicilio) {
+    public PacienteSalidaDto(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioSalidaDto domicilio) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -77,11 +75,16 @@ public class PacienteSalidaDto {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public DomicilioEntradaDto getDomicilio() {
+    public DomicilioSalidaDto getDomicilio() {
         return domicilio;
     }
 
-    public void setDomicilio(DomicilioEntradaDto domicilio) {
+    public void setDomicilio(DomicilioSalidaDto domicilio) {
         this.domicilio = domicilio;
+    }
+
+    @Override
+    public String toString() {
+        return "Id: " + id + " - Nombre: " + nombre + " - Apellido: " + apellido + " - DNI: " + dni + " - Fechas de ingreso: " + fechaIngreso + " - Domicilio: " + domicilio;
     }
 }

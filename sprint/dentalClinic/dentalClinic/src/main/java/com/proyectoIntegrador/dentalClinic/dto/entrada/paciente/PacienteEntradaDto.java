@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PacienteEntradaDto {
     @Size(max = 50, message = "El nombre debe tener hasta 50 caracteres")

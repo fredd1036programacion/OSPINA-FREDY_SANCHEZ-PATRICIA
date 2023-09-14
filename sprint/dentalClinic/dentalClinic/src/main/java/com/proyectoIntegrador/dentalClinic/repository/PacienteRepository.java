@@ -1,7 +1,6 @@
 package com.proyectoIntegrador.dentalClinic.repository;
 
 
-
 import com.proyectoIntegrador.dentalClinic.entity.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -10,14 +10,14 @@ import java.util.List;
 public interface IOdontologoService {
 
 
-     OdontologoSalidaDto guardarOdontologo(OdontologoEntradaDto odontologo);
+    OdontologoSalidaDto guardarOdontologo(OdontologoEntradaDto odontologo);
 
-     OdontologoSalidaDto buscarOdontologoPorId(Long id);
+    OdontologoSalidaDto buscarOdontologoPorId(Long id);
 
-     List<OdontologoSalidaDto> listarOdontologos();
+    List<OdontologoSalidaDto> listarOdontologos();
 
-     void eliminarOdontologo(Long id) throws ResourceNotFoundException;
+    void eliminarOdontologo(Long id) throws ResourceNotFoundException;
 
-     OdontologoSalidaDto modificarOdontologo (OdontologoModificacionEntradaDto modificarOdontologo);
+    OdontologoSalidaDto modificarOdontologo(OdontologoModificacionEntradaDto modificarOdontologo) throws ResourceNotFoundException;
 
 }

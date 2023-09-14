@@ -9,7 +9,7 @@ public class OdontologoEntradaDto {
 
     @NotNull(message = "el dato de matricula no puede ser nulo")
     @NotBlank(message = "el campo no puede estar vacio")
-    @Pattern(regexp = "^[A-Z]{2}-\\d{1,3}\\d*$" , message = "debe ser alfanumerico y un guion despues de las 2 letras")
+    @Pattern(regexp = "^[A-Z]{2}-\\d{1,3}\\d*$", message = "debe ser alfanumerico y un guion despues de las 2 letras")
     @Size(min = 10, message = "El campo debe tener mínimo 10 caracteres")
     private String matricula;
 

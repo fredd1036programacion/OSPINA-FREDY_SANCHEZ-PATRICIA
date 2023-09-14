@@ -21,8 +21,7 @@ public interface IPacienteService {
     void eliminarPaciente(Long id) throws ResourceNotFoundException;
 
     // la clase paciente del inicio es el retorno, se espera que retorne un paciente
-    PacienteSalidaDto modificarPaciente(PacienteModificacionEntradaDto pacienteModificado);
-
+    PacienteSalidaDto modificarPaciente(PacienteModificacionEntradaDto pacienteModificado) throws ResourceNotFoundException;
 
 
 }

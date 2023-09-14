@@ -4,6 +4,7 @@ package com.proyectoIntegrador.dentalClinic.controller;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.TurnoModificacionEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.turno.TurnoEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.salida.turno.TurnoSalidaDto;
+import com.proyectoIntegrador.dentalClinic.exceptions.BadRequestException;
 import com.proyectoIntegrador.dentalClinic.exceptions.ResourceNotFoundException;
 import com.proyectoIntegrador.dentalClinic.service.ITurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,13 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/turnos")
 public class TurnoController {
 
-private ITurnoService turnoService;
+    private ITurnoService turnoService;
 
-@Autowired
+    @Autowired
 
     public TurnoController(ITurnoService turnoService) {
         this.turnoService = turnoService;
@@ -28,33 +30,33 @@ private ITurnoService turnoService;
 
     //POST
     @PostMapping("/registrar")
-    public ResponseEntity<TurnoSalidaDto> registrarTurno(@Valid @RequestBody TurnoEntradaDto turnoEntradaDto){
-    return new ResponseEntity<>(turnoService.registrarTurno(turnoEntradaDto), HttpStatus.CREATED);
+    public ResponseEntity<TurnoSalidaDto> registrarTurno(@Valid @RequestBody TurnoEntradaDto turnoEntradaDto) throws BadRequestException {
+        return new ResponseEntity<>(turnoService.registrarTurno(turnoEntradaDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/actualizar")
-    public ResponseEntity<TurnoSalidaDto> actualizarTurno  (@Valid @RequestBody TurnoModificacionEntradaDto turno) throws ResourceNotFoundException {
-        return new ResponseEntity<> (turnoService.modificarTurno(turno), HttpStatus.OK);
+    public ResponseEntity<TurnoSalidaDto> actualizarTurno(@Valid @RequestBody TurnoModificacionEntradaDto turno) throws ResourceNotFoundException {
+        return new ResponseEntity<>(turnoService.modificarTurno(turno), HttpStatus.OK);
     }
 
-    @GetMapping (path = "consultaturno/{id}")
-    public ResponseEntity <TurnoSalidaDto> consultarTurno (@PathVariable Long id){
-        return new ResponseEntity<>(turnoService.buscarTurnoPorId(id),HttpStatus.FOUND);
+    @GetMapping(path = "consultaturno/{id}")
+    public ResponseEntity<TurnoSalidaDto> consultarTurno(@PathVariable Long id) {
+        return new ResponseEntity<>(turnoService.buscarTurnoPorId(id), HttpStatus.FOUND);
     }
 
     @DeleteMapping(path = "eliminarTurno/{id}")
-    public void  eliminarTurno (@PathVariable Long id) throws ResourceNotFoundException {
+    public ResponseEntity<?> eliminarTurno(@PathVariable Long id) throws ResourceNotFoundException {
         turnoService.eliminarTurno(id);
-        ResponseEntity<String> responseEntity = ResponseEntity.ok("Turno Eliminado");
+        return new ResponseEntity<>("Turno Eliminado con exito", HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping ()
-    public ResponseEntity <List<TurnoSalidaDto>> listarTurno (){
-        return new ResponseEntity<>(turnoService.listarTurno(),HttpStatus.FOUND);
+    @GetMapping()
+    public ResponseEntity<List<TurnoSalidaDto>> listarTurno() {
+        return new ResponseEntity<>(turnoService.listarTurno(), HttpStatus.FOUND);
     }
 
     @GetMapping("holaTurno")
-    public String saludar(){
+    public String saludar() {
         String saludo = "prueba q funciona la api de fredyTurno";
         return saludo;
     }

@@ -3,7 +3,6 @@ package com.proyectoIntegrador.dentalClinic.dto.entrada.paciente;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -14,19 +13,19 @@ import javax.validation.constraints.Pattern;
 public class DomicilioEntradaDto {
 
     @NotNull(message = "no debe ser nula la calle")
-    @NotBlank (message = "debe especificar el nombre de la calle")
+    @NotBlank(message = "debe especificar el nombre de la calle")
     private String calle;
 
     //@Digits(integer = 8, fraction = 0, message = "El número debe tener como máximo 8 dígitos")
     @Pattern(regexp = "\\d{1,8}", message = "El número debe tener como máximo 8 dígitos")
     @NotNull(message = "no debe ser nula la numero")
-    @NotBlank (message = "debe especificar el nombre de la numero")
+    @NotBlank(message = "debe especificar el nombre de la numero")
     private int numero;
     @NotNull(message = "no debe ser nula la localidad")
-    @NotBlank (message = "debe especificar el nombre de la localidad")
+    @NotBlank(message = "debe especificar el nombre de la localidad")
     private String localidad;
     @NotNull(message = "no debe ser nula la Provincia")
-    @NotBlank (message = "debe especificar el nombre de la provincia")
+    @NotBlank(message = "debe especificar el nombre de la provincia")
     private String provincia;
 
     public DomicilioEntradaDto() {
@@ -70,4 +69,6 @@ public class DomicilioEntradaDto {
     public void setProvincia(String provincia) {
         this.provincia = provincia;
     }
+
+
 }

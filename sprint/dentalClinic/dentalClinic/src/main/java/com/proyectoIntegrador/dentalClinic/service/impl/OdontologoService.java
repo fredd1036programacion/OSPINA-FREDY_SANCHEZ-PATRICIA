@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
 
 @Service
@@ -72,7 +71,7 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public OdontologoSalidaDto modificarOdontologo(OdontologoModificacionEntradaDto modificarOdontologo) {
+    public OdontologoSalidaDto modificarOdontologo(OdontologoModificacionEntradaDto modificarOdontologo) throws ResourceNotFoundException {
         Odontologo odontologoRecibido = modelMapper.map(modificarOdontologo, Odontologo.class);
         Odontologo odontologoAActualizar = odontologoRepository.findById(modificarOdontologo.getId()).orElse(null);
         OdontologoSalidaDto odontologoSalidaDto = null;
@@ -88,18 +87,18 @@ public class OdontologoService implements IOdontologoService {
 
         } else {
             LOGGER.error("No fue posible actualizar los datos ya que el odontologo no se encuentra registrado");
-
+            throw new ResourceNotFoundException("No se ha encontrado el paciente con id" + modificarOdontologo.getId());
         }
 
 
         return odontologoSalidaDto;
     }
 
-    public Odontologo dtoEntradaAOdontologo(OdontologoEntradaDto odontologoEntradaDto){
+    public Odontologo dtoEntradaAOdontologo(OdontologoEntradaDto odontologoEntradaDto) {
         return modelMapper.map(odontologoEntradaDto, Odontologo.class);
-}
+    }
 
-    public OdontologoSalidaDto odontologoADtoSalida(Odontologo odontologo){
+    public OdontologoSalidaDto odontologoADtoSalida(Odontologo odontologo) {
 
         return modelMapper.map(odontologo, OdontologoSalidaDto.class);
     }
@@ -107,7 +106,6 @@ public class OdontologoService implements IOdontologoService {
     public Odontologo dtoModificadoAOdontologo(OdontologoModificacionEntradaDto odontologEntradaDto) {
         return modelMapper.map(odontologEntradaDto, Odontologo.class);
     }
-
 
 
 }

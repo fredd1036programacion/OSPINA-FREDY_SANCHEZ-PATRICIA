@@ -2,6 +2,7 @@ package com.proyectoIntegrador.dentalClinic.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "TURNOS")
 public class Turno {

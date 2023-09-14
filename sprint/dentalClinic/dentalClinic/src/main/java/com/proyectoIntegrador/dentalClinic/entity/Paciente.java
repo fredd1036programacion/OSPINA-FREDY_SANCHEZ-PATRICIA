@@ -1,7 +1,5 @@
 package com.proyectoIntegrador.dentalClinic.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 

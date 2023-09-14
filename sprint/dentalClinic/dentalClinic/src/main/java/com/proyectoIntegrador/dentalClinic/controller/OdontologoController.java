@@ -14,6 +14,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+// salia un error en la api que no dejaba desde js ejecutar en fetch de local host. se corrige con el @Crossorigin.
+@CrossOrigin
 @RequestMapping("/odontologos")
 public class OdontologoController {
 
@@ -30,37 +32,37 @@ public class OdontologoController {
     //@RequestBody es para que trabaje la informacion de java en Json
 
     @PostMapping("registrar")
-    public ResponseEntity<OdontologoSalidaDto> registrarOdontologo(@Valid @RequestBody OdontologoEntradaDto odontologo){
+    public ResponseEntity<OdontologoSalidaDto> registrarOdontologo(@Valid @RequestBody OdontologoEntradaDto odontologo) {
         return new ResponseEntity<>(odontologoService.guardarOdontologo(odontologo), HttpStatus.CREATED);
     }
 
-    @PutMapping("Actualizar")
-    public ResponseEntity<OdontologoSalidaDto> actualizarOdontologo (@Valid @RequestBody OdontologoModificacionEntradaDto odontologoModificado)  {
-        return new ResponseEntity<>(odontologoService.modificarOdontologo(odontologoModificado),HttpStatus.OK);
+    @PutMapping("actualizar")
+    public ResponseEntity<OdontologoSalidaDto> actualizarOdontologo(@Valid @RequestBody OdontologoModificacionEntradaDto odontologoModificado) throws ResourceNotFoundException  {
+        return new ResponseEntity<>(odontologoService.modificarOdontologo(odontologoModificado), HttpStatus.OK);
     }
 
 
     //Ejercicio de la mesa clase de APIs. Clase 17
 
 
-    @GetMapping (path = "/consultaOdontologo/{id}")
-    public ResponseEntity <OdontologoSalidaDto> consultarOdontologo (Long id){
-        return new ResponseEntity<>(odontologoService.buscarOdontologoPorId(id),HttpStatus.FOUND);
+    @GetMapping(path = "/consultaOdontologo/{id}")
+    public ResponseEntity<OdontologoSalidaDto> consultarOdontologo(@PathVariable Long id) {
+        return new ResponseEntity<>(odontologoService.buscarOdontologoPorId(id), HttpStatus.FOUND);
     }
 
     @DeleteMapping(path = "/eliminarOdontologo/{id}")
-    public void eliminarOdontologo (Long id) throws ResourceNotFoundException {
+    public ResponseEntity<?> eliminarOdontologo(@PathVariable Long id) throws ResourceNotFoundException {
         odontologoService.eliminarOdontologo(id);
-        ResponseEntity<String> responseEntity = ResponseEntity.ok("Odontologo Eliminado");
+        return new ResponseEntity<>("Odontologo modificado correctamente", HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping (path = "/consultarTodo")
-    public ResponseEntity <List<OdontologoSalidaDto>> listarOdontologo (){
-        return new ResponseEntity<>(odontologoService.listarOdontologos(),HttpStatus.FOUND);
+    @GetMapping(path = "/consultarTodo")
+    public ResponseEntity<List<OdontologoSalidaDto>> listarOdontologo() {
+        return new ResponseEntity<>(odontologoService.listarOdontologos(), HttpStatus.FOUND);
     }
 
     @GetMapping("holaOdontologo")
-    public String saludar(){
+    public String saludar() {
         String saludo = "prueba q funciona la api de fredy Odontologo";
         return saludo;
     }

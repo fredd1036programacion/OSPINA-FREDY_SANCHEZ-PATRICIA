@@ -3,10 +3,6 @@ package com.proyectoIntegrador.dentalClinic.dto.salida.paciente;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
 
 // si hay algun campo esta demas que se ingore.
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -59,5 +55,10 @@ public class DomicilioSalidaDto {
 
     public void setProvincia(String provincia) {
         this.provincia = provincia;
+    }
+
+    @Override
+    public String toString() {
+        return "Id: " + id + " - Calle: " + calle + " - Numero: " + numero + " - Localidad: " + localidad + " - Provincia: " + provincia;
     }
 }

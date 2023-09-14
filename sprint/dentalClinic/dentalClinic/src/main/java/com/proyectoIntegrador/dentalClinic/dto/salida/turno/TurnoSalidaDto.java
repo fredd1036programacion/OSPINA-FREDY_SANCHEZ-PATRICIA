@@ -1,7 +1,5 @@
 package com.proyectoIntegrador.dentalClinic.dto.salida.turno;
 
-import com.proyectoIntegrador.dentalClinic.dto.salida.odontologo.OdontologoSalidaDto;
-
 import java.time.LocalDateTime;
 
 public class TurnoSalidaDto {
@@ -51,5 +49,10 @@ public class TurnoSalidaDto {
 
     public void setFechaYHora(LocalDateTime fechaYHora) {
         this.fechaYHora = fechaYHora;
+    }
+
+    @Override
+    public String toString() {
+        return "Id: " + id + " - Paciente: " + pacienteTurnoSalidaDto + " - Odontologo: " + odontologoTurnoSalidaDto + " - Fecha y hora: " + fechaYHora;
     }
 }
