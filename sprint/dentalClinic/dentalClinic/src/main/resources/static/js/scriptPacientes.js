@@ -121,7 +121,7 @@ function renderizarRespuesta(datos) {
 
 
 /* -------------------------------------------------------------------------- */
-/*                    FUNCION: formularioRegistrar a la API                   */
+/*                    FUNCION: formulariobuscar a la API                   */
 /* -------------------------------------------------------------------------- */
 
 

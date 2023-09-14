@@ -5,25 +5,25 @@
 
 window.addEventListener('load', function () {
 
-    const formulario = document.querySelector('.formularioOdontologoRegistrar')
+    const formulario = document.querySelector('.formularioTurnoRegistrar')
 
     formulario.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        postearComentarioOdon1();
+        postearComentarioturno1();
     })
 })
 
 
-function capturarDatosOdon1() {
-    const matriculaOdontologo = document.querySelector ('#matriculaOdontologo');
-    const nombreOdontologo = document.querySelector ('#nombreOdontologo');
-    const apellidoOdontologo = document.querySelector ('#apellidoOdontologo');
+function capturarDatosTurno1() {
+    const odontologoIdTurno = document.querySelector ('#odontologoIdTurno');
+    const pacienteIdTurno = document.querySelector ('#pacienteIdTurno');
+    const LocalDateTimeTurno = document.querySelector ('#LocalDateTimeTurno');
 
     let objeto = {
-        matricula : matriculaOdontologo.value,
-        nombre : nombreOdontologo.value,
-        apellido : apellidoOdontologo.value,
+        odontologoId : odontologoIdTurno.value,
+        pacienteId : pacienteIdTurno.value,
+        fechaYHora : LocalDateTimeTurno.value,
                
         }
 
@@ -32,9 +32,9 @@ function capturarDatosOdon1() {
 }
 
 
-function postearComentarioOdon1() {
+function postearComentarioturno1() {
     // 👇 usamos nuestra funcion para capturar los datos y guardarlos como objeto
-    const datos = capturarDatosOdon1();
+    const datos = capturarDatosTurno1();
 
     // 👇 armamos las configuraciones
     // la api acepta JSON, por eso stringuificamos los datos
@@ -46,7 +46,7 @@ function postearComentarioOdon1() {
         },
     }
 
-    fetch('http://localhost:8081/odontologos/registrar', configuraciones)
+    fetch('http://localhost:8081/turnos/registrar', configuraciones)
     .then(response => {
         console.log(response);
 
@@ -59,26 +59,21 @@ function postearComentarioOdon1() {
     })
         .then((data) => {
             console.log(data);
-            renderizarRespuestaOdon1(data);
+            renderizarRespuestaTurno1(data);
         }).catch(err => {
             console.log("Promesa rechazada:");
             console.log(err);
         })
 }
 
-function renderizarRespuestaOdon1(datos) {
-    const div = document.querySelector('.registrarOdontologoFormrespuesta')
+function renderizarRespuestaTurno1(datos) {
+    const div = document.querySelector('.registrarTurnoFormrespuesta')
     
     const template = `
         <p>✅ Datos cargados en el servidor</p>
-        <h2>
-        nombre : ${datos.nombre}
-        </h2>
+
         <p>
-        matricula : ${datos.matricula}
-        </p>
-        <p>
-        apellido : ${datos.apellido}
+        Fecha y Hora : ${datos.fechaYHora}
         </p>
         `;
 
@@ -102,22 +97,22 @@ function renderizarRespuestaOdon1(datos) {
 
     window.addEventListener('load', function () {
 
-        const formulario = document.querySelector('.formularioOdontologoBuscar')
+        const formulario = document.querySelector('.formularioTurnoBuscar')
     
         formulario.addEventListener('submit', function (event) {
             event.preventDefault();
     
             /* postearComentario();*/
 
-            const idPacienteBuscar = document.querySelector ('#idOdontologoBuscar');
-            const endpoint = 'http://localhost:8081/odontologos/consultaOdontologo/' + parseInt(idPacienteBuscar.value);
+            const idPacienteBuscar = document.querySelector ('#idTurnoBuscar');
+            const endpoint = 'http://localhost:8081/turnos/consultaturno/' + parseInt(idPacienteBuscar.value);
             console.log(endpoint)
-            consultaApiOdont2(endpoint)
+            consultaApiTurno2(endpoint)
 
         })
     })
 
-    function consultaApiOdont2(endpoint) {
+    function consultaApiTurno2(endpoint) {
 
         fetch(endpoint)
             .then(objetoRespuesta => {
@@ -127,24 +122,24 @@ function renderizarRespuestaOdon1(datos) {
             })
             .then(datosJs => {
                 console.log(datosJs);
-                renderizarElementosodon2(datosJs);
+                renderizarElementosTurno2(datosJs);
             })
         }
     
  
-function renderizarElementosodon2(datos) {
-    const comentarios = document.querySelector('.buscarOdontologoFormrespuesta');
-
+function renderizarElementosTurno2(datos) {
+    const comentarios = document.querySelector('.buscarTurnoFormrespuesta');
+        
         const template = `
         <h2>✅ Datos buscados son del id  ${datos.id} </h2>
         <p>
-        nombre : ${datos.matricula}
+        nombre odontologo : ${datos.odontologoTurnoSalidaDto.nombre}
         </p>
         <p>
-        apellido : ${datos.nombre}
+        nombre paciente : ${datos.pacienteTurnoSalidaDto.nombre}
         </p>
         <p>
-        dni : ${datos.apellido}
+        fecha y hora : ${datos.fechaYHora}
         </p>
 
     `;
@@ -165,21 +160,21 @@ function renderizarElementosodon2(datos) {
 
 window.addEventListener('load', function () {
 
-    const formulario = document.querySelector('.formularioOdontologoListar')
+    const formulario = document.querySelector('.formularioTurnoListar')
 
     formulario.addEventListener('submit', function (event) {
         event.preventDefault();
 
         /* postearComentario();*/
 
-        const endpoint = 'http://localhost:8081/odontologos/consultarTodo';
+        const endpoint = 'http://localhost:8081/turnos/';
         console.log(endpoint)
-        consultaApiOdont3(endpoint)
+        consultaApiTurno3(endpoint)
 
     })
 })
 
-function consultaApiOdont3(endpoint) {
+function consultaApiTurno3(endpoint) {
 
     fetch(endpoint)
         .then(objetoRespuesta => {
@@ -189,21 +184,20 @@ function consultaApiOdont3(endpoint) {
         })
         .then(datosJs => {
             console.log(datosJs);
-            renderizarElementosodont3(datosJs);
+            renderizarElementosTurno3(datosJs);
         })
     }
 
-    function renderizarElementosodont3(listado) {
-        const comentarios = document.querySelector('.formularioOdontologoListartodos');
+    function renderizarElementosTurno3(listado) {
+        const comentarios = document.querySelector('.formularioTurnoListartodos');
     
         comentarios.innerHTML = listado.map(item => {
-            return`<div class="formularioOdontologoListartodoss">
+            return`<div class="formularioTurnoListartodoss">
             <fieldset>
-                <h2>Odontologo : ${item.nombre}</h2>
+                <h2>Paciente : ${item.pacienteTurnoSalidaDto.nombre}</h2>
                 <p>ID: ${item.id}</p>
-                <p>Apellido: ${item.apellido}</p>
-                <p>DNI: ${item.matricula}</p>
-                <h2>Proximo odontologo</h2>
+                <p>Odontologo: ${item.odontologoTurnoSalidaDto.nombre}</p>
+            <h2>Proximo Turno</h2>
             </fieldset>
             </div>`
         }).join('');
@@ -220,22 +214,22 @@ function consultaApiOdont3(endpoint) {
 
 window.addEventListener('load', function () {
 
-    const formulario = document.querySelector('.formularioOdontologoEliminar')
+    const formulario = document.querySelector('.formularioTurnoEliminar')
 
     formulario.addEventListener('submit', function (event) {
         event.preventDefault();
 
         /* postearComentario();*/
 
-        const idPacienteBuscar = document.querySelector ('#idOdontologoEliminar');
-        const endpoint = 'http://localhost:8081/odontologos/eliminarOdontologo/' + parseInt(idPacienteBuscar.value);
+        const idPacienteBuscar = document.querySelector ('#idTurnoEliminar');
+        const endpoint = 'http://localhost:8081/turnos/eliminarTurno/' + parseInt(idPacienteBuscar.value);
         console.log(endpoint)
-        consultaApiOdont4(endpoint)
+        consultaApiTurno4(endpoint)
 
     })
 })
 
-function consultaApiOdont4(endpoint) {
+function consultaApiTurno4(endpoint) {
 
     const configuraciones = {
         method: 'DELETE',
@@ -247,7 +241,7 @@ function consultaApiOdont4(endpoint) {
           throw new Error(`Error - ${response.status}`);
         }
         console.log('Solicitud DELETE exitosa');
-        renderizarElementosOdon4();
+        renderizarElementosturno4();
         // Realizar acciones adicionales después de la eliminación exitosa
       })
       .catch(error => {
@@ -256,8 +250,8 @@ function consultaApiOdont4(endpoint) {
       });
     }
 
-    function renderizarElementosOdon4() {
-        const comentarios = document.querySelector('.formularioOdontologoeliminardato');
+    function renderizarElementosturno4() {
+        const comentarios = document.querySelector('.formularioTurnoeliminardato');
     
             const template = `
             <p>✅ Odontologo eliminado del servidor</p>
@@ -281,29 +275,29 @@ function consultaApiOdont4(endpoint) {
 
 window.addEventListener('load', function () {
 
-    const formulario = document.querySelector('.formularioOdontologoModificar')
+    const formulario = document.querySelector('.formularioTurnoModificar')
 
     formulario.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        postearComentarioOdotont6();
+        postearComentarioTurno6();
     })
 })
 
 
-function capturarDatosOdont6() {
-const idOdontooloModificar = document.querySelector ('#idOdontologoModificar');
-const nombreOdontooloModificar = document.querySelector ('#nombreOdontologoModificar');
-const apellidoOdontooloModificar = document.querySelector ('#apellidoOdontologoModificar');
-const matriculaOdontooloModificar = document.querySelector ('#matriculaOdontologoModificar');
+function capturarDatosTurno6() {
+const idTurnoModificar = document.querySelector ('#idTurnoModificar');
+const IdPacienteTurnoModificar = document.querySelector ('#IdPacienteTurnoModificar');
+const IdOdontologoTurnoModificar = document.querySelector ('#IdOdontologoTurnoModificar');
+const fechaYHoraTurnoModificar = document.querySelector ('#fechaYHoraTurnoModificar');
 
 
 
     let objeto = {
-        id : parseInt(idOdontooloModificar.value),
-        matricula : matriculaOdontooloModificar.value,
-        nombre : nombreOdontooloModificar.value,
-        apellido : apellidoOdontooloModificar.value,
+        id : parseInt(idTurnoModificar.value),
+        idPaciente : parseInt(IdPacienteTurnoModificar.value),
+        idOdontologo : parseInt(IdOdontologoTurnoModificar.value),
+        fechaYHora : fechaYHoraTurnoModificar.value,
          
         }
 
@@ -313,9 +307,9 @@ const matriculaOdontooloModificar = document.querySelector ('#matriculaOdontolog
 }
 
 
-function postearComentarioOdotont6() {
+function postearComentarioTurno6() {
     // 👇 usamos nuestra funcion para capturar los datos y guardarlos como objeto
-    const datos = capturarDatosOdont6();
+    const datos = capturarDatosTurno6();
 
     // 👇 armamos las configuraciones
     // la api acepta JSON, por eso stringuificamos los datos
@@ -327,7 +321,7 @@ function postearComentarioOdotont6() {
         },
     }
 
-    fetch('http://localhost:8081/odontologos/actualizar', configuraciones)
+    fetch('http://localhost:8081/turnos/actualizar', configuraciones)
     .then(response => {
         console.log(response);
 
@@ -340,29 +334,26 @@ function postearComentarioOdotont6() {
     })
         .then((data) => {
             console.log(data);
-            renderizarRespuestaOdont6(data);
+            renderizarRespuestaTurno6(data);
         }).catch(err => {
             console.log("Promesa rechazada:");
             console.log(err);
         })
 }
 
-function renderizarRespuestaOdont6(datos) {
-    const div = document.querySelector('.formularioOdontologomodificar')
+function renderizarRespuestaTurno6(datos) {
+    const div = document.querySelector('.formularioTurnomodificar')
     
     const template = `
         <H2>✅ EL ID MODIFICADO FUE: ${datos.id} </H2>
         <p>
-        nombre : ${datos.nombre}
+        nombre paciente actualizado : ${datos.pacienteTurnoSalidaDto.nombre}
         </p>
         <p>
-        apellido : ${datos.apellido}
+        nombre odontologo actualizado : ${datos.odontologoTurnoSalidaDto.nombre}
         </p>
         <p>
-        dni : ${datos.matricula}
-        </p>
-
-    `;
+   `;
 
     div.innerHTML = template;
 

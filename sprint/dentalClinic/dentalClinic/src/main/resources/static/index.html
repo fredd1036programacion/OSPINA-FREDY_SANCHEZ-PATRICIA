@@ -189,7 +189,7 @@
 
             <!-- Formulario 1: Registrar Odontologo -->
             <fieldset class="formularioOdontologoRegistrar">
-                <legend>Formulario 2: Registrar Odontologo</legend>
+                <legend>Formulario 1: Registrar Odontologo</legend>
                 <form action="#" method="post" id="registrarOdontologoForm">
                     <label for="matriculaOdontologo">matricula:</label>
                     <input type="text" id="matriculaOdontologo" name="matriculaOdontologo" required>
@@ -335,6 +335,162 @@
 
 
 
+
+
+        <h1>Turno</h1>
+        <!-- Agrupador 3: Turnos -->
+        <fieldset>
+            <legend>Turnos</legend>
+
+            <!-- Formulario 1: Registrar Turno -->
+            <fieldset class="formularioTurnoRegistrar">
+                <legend>Formulario 1: Registrar Turno</legend>
+                <form action="#" method="post" id="registrarTurnoForm">
+                    <label for="odontologoIdTurno">Id odontologo:</label>
+                    <input type="number" id="odontologoIdTurno" name="odontologoIdTurno" required>
+
+                    <label for="pacienteIdTurno">Id paciente:</label>
+                    <input type="number" id="pacienteIdTurno" name="pacienteIdTurno" required>
+
+                    <label for="LocalDateTimeTurno">Apellido:</label>
+                    <input type="text" id="LocalDateTimeTurno" name="LocalDateTimeTurno" required>
+
+                    <div class="acciones">
+                        <button type="submit">Registrar Turno</button>
+                    </div>
+                </form>
+            <fieldset>
+                <div class="registrarTurnoFormrespuesta">
+
+                </div>
+            </fieldset>
+            </fieldset>
+
+
+
+
+
+
+            <!-- Formulario 2: Buscar Turno por ID -->
+            <fieldset class="formularioTurnoBuscar">
+                <legend>Formulario 2: Buscar Turno por ID</legend>
+                <form action="#" method="post" id="buscarTurnoPorIdForm">
+                    <label for="idTurnoBuscar">ID del Turno:</label>
+                    <input type="text" id="idTurnoBuscar" name="idTurnoBuscar" required>
+
+                    <div class="acciones">
+                        <button type="submit" class="boton">Buscar Turno por ID</button>
+                    </div>
+                </form>
+
+                <fieldset>
+                    <div class="buscarTurnoFormrespuesta">
+    
+                    </div>
+                </fieldset>
+
+
+
+
+
+            </fieldset>
+
+            <!-- Formulario 3: Listar Turnos -->
+            <fieldset class="formularioTurnoListar">
+                <legend>Formulario 3: Listar Turnos</legend>
+                <form action="#" method="post" id="listarTurnosForm">
+                    <div class="acciones">
+                        <button type="submit">Listar Turnos</button>
+                    </div>
+                </form>
+
+                <fieldset>
+                    <div class="formularioTurnoListartodos">
+                        
+    
+                    </div>
+
+                </fieldset>
+            </fieldset>
+
+
+
+
+
+            <!-- Formulario 4: Eliminar Turno -->
+            <fieldset class="formularioTurnoEliminar">
+                <legend>Formulario 4: Eliminar Turno</legend>
+                <form action="#" method="post" id="eliminarTurnoForm">
+                    <label for="idTurnoEliminar">ID del Turno a eliminar:</label>
+                    <input type="text" id="idTurnoEliminar" name="idTurnoEliminar" required>
+
+                    <div class="acciones">
+                        <button type="submit">Eliminar Turno</button>
+                    </div>
+                </form>
+
+                <fieldset>
+                    <div class="formularioTurnoeliminardato">
+                        
+    
+                    </div>
+
+                </fieldset>
+
+            </fieldset>
+
+            
+
+            <!-- Formulario 5: Modificar Turno -->
+            <fieldset class="formularioTurnoModificar">
+                <legend>Formulario 5: Modificar Turno</legend>
+                <form action="#" method="post" id="modificarTurnoForm">
+                    <label for="idTurnoModificar">ID del Turno a modificar:</label>
+                    <input type="number" id="idTurnoModificar" name="idTurnoModificar" required>
+
+                    <!-- Formulario 5.1: Campos a modificar -->
+                    <fieldset>
+                        <legend>Campos a modificar</legend>
+                        <label for="IdPacienteTurnoModificar">id Paciente:</label>
+                        <input type="text" id="IdPacienteTurnoModificar" name="IdPacienteTurnoModificar" required>
+
+                        <label for="IdOdontologoTurnoModificar">id Odontologo:</label>
+                        <input type="text" id="IdOdontologoTurnoModificar" name="IdOdontologoTurnoModificar" required>
+
+                        <label for="fechaYHoraTurnoModificar">fechaYHora:</label>
+                        <input type="text" id="fechaYHoraTurnoModificar" name="fechaYHoraTurnoModificar" required>
+
+                    </fieldset>
+                    <!-- Fin Formulario 5.1 -->
+
+                    <div class="acciones">
+                        <button type="submit">Modificar Turno</button>
+                    </div>
+                </form>
+            </fieldset>
+            <!-- Fin Formulario 5 -->
+
+            <fieldset>
+                <div class="formularioTurnomodificar">
+                    
+
+                </div>
+
+            </fieldset>
+
+        </fieldset>
+        <!-- Fin Agrupador 1: Turnos -->
+
+
+
+
+
+
+
+
+
+
+
     </main>
 
     <footer>
@@ -343,5 +499,6 @@
 
     <script src="./js/scriptPacientes.js"></script>
     <script src="./js/scriptOdontologo.js"></script>
+    <script src="./js/scriptTurno.js"></script>
 </body>
 </html>
