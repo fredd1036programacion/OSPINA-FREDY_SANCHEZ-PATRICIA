@@ -82,7 +82,7 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public PacienteSalidaDto modificarPaciente(PacienteModificacionEntradaDto pacienteModificado) {
+    public PacienteSalidaDto modificarPaciente(PacienteModificacionEntradaDto pacienteModificado) throws ResourceNotFoundException {
         Paciente pacienteRecibido = dtoModificadoAEntidad(pacienteModificado);
         Paciente pacienteAActualizar = pacienteRepository.findById(pacienteModificado.getId()).orElse(null);
         PacienteSalidaDto pacienteSalidaDto = null;
@@ -98,6 +98,7 @@ public class PacienteService implements IPacienteService {
 
         } else {
             LOGGER.error("No fue posible actualizar los datos ya que el paciente no se encuentra registrado");
+            throw new ResourceNotFoundException("No se ha encontrado el paciente con id" + pacienteModificado.getId());
 
         }
 

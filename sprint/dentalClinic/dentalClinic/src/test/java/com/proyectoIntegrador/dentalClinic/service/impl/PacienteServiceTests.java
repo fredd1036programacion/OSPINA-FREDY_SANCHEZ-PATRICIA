@@ -1,4 +1,4 @@
-package com.proyectoIntegrador.dentalClinic;
+package com.proyectoIntegrador.dentalClinic.service.impl;
 
 import com.proyectoIntegrador.dentalClinic.dto.entrada.modificacion.PacienteModificacionEntradaDto;
 import com.proyectoIntegrador.dentalClinic.dto.entrada.paciente.DomicilioEntradaDto;
@@ -60,6 +60,6 @@ class PacienteServiceTests {
 	}
 
 
-	
+
 
 }

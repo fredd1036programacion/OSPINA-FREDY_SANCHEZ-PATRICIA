@@ -18,6 +18,6 @@ public interface IOdontologoService {
 
     void eliminarOdontologo(Long id) throws ResourceNotFoundException;
 
-    OdontologoSalidaDto modificarOdontologo(OdontologoModificacionEntradaDto modificarOdontologo);
+    OdontologoSalidaDto modificarOdontologo(OdontologoModificacionEntradaDto modificarOdontologo) throws ResourceNotFoundException;
 
 }

@@ -20,7 +20,7 @@ public class TurnoEntradaDto {
     //se va a usar LocakDateTime para que se pueda regitrar la fecha y la hora tambien
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     @FutureOrPresent(message = "La fecha no puede ser anterior al dia de hoy")
-    @NotNull(message = "Debe especificarse la fehca y la hora del turno")
+    @NotNull(message = "Debe especificarse la fecha y la hora del turno")
     private LocalDateTime fechaYHora;
 
     public TurnoEntradaDto() {

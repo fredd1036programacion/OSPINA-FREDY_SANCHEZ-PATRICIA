@@ -21,12 +21,12 @@ public class PacienteSalidaDto {
     private LocalDate fechaIngreso;
 
 
-    private DomicilioEntradaDto domicilio;
+    private DomicilioSalidaDto domicilio;
 
     public PacienteSalidaDto() {
     }
 
-    public PacienteSalidaDto(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioEntradaDto domicilio) {
+    public PacienteSalidaDto(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioSalidaDto domicilio) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -75,11 +75,11 @@ public class PacienteSalidaDto {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public DomicilioEntradaDto getDomicilio() {
+    public DomicilioSalidaDto getDomicilio() {
         return domicilio;
     }
 
-    public void setDomicilio(DomicilioEntradaDto domicilio) {
+    public void setDomicilio(DomicilioSalidaDto domicilio) {
         this.domicilio = domicilio;
     }
 
