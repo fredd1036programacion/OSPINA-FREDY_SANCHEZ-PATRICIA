@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
-class pacienteServiceTests {
+class PacienteServiceTests {
 
 	@Autowired
 	private PacienteService pacienteService;
@@ -44,7 +44,7 @@ class pacienteServiceTests {
 	@Order(3)
 	void alIntentarActualizarElPacienteId2_deberiaLanzarseUnaResourceNotFoundException(){
 		PacienteModificacionEntradaDto pacienteModificacionEntradaDto = new PacienteModificacionEntradaDto();
-		pacienteModificacionEntradaDto.setId(1L);
+		pacienteModificacionEntradaDto.setId(2L);
 		assertThrows(ResourceNotFoundException.class, () -> pacienteService.modificarPaciente(pacienteModificacionEntradaDto));
 	}
 
@@ -58,5 +58,8 @@ class pacienteServiceTests {
 		}
 		assertThrows(ResourceNotFoundException.class, () -> pacienteService.eliminarPaciente(1L));
 	}
+
+
+	
 
 }
